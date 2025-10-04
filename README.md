@@ -1,4 +1,4 @@
-# 🏨 Hotel Booking System (HBS)
+#  Hotel Booking System (HBS)
 
 ## ✨ Giới thiệu Dự án
 
@@ -6,7 +6,7 @@ Dự án **Hotel Booking System (HBS)** là một hệ thống quản lý đặt
 
 ---
 
-### 🛠️ Công nghệ & Phương pháp luận
+###  Công nghệ & Phương pháp luận
 
 * **Phương pháp:** **Agile Scrum**
 * **Quản lý Công việc:** **Jira** (Sprints, Backlog, Board)
@@ -14,7 +14,7 @@ Dự án **Hotel Booking System (HBS)** là một hệ thống quản lý đặt
 
 ---
 
-## 🏗️ 1. Thiết kế Hệ thống (UML & ERD)
+##  1. Thiết kế Hệ thống (UML & ERD)
 
 Toàn bộ tài liệu thiết kế (sơ đồ) được lưu trữ trong thư mục **`docs/`** của repository.
 
@@ -22,10 +22,10 @@ Toàn bộ tài liệu thiết kế (sơ đồ) được lưu trữ trong thư m
 
 | Vai trò (Actor) | Chức năng Chính (Core Functions) |
 | :---: | :--- |
-| 🧑‍🤝‍🧑 **Guest** | Đặt phòng Online, Tìm phòng & Xem chi tiết, Quản lý Hồ sơ. |
-| 👩‍💼 **Lễ tân** | Check-in/Check-out, Quản lý Đặt phòng, Thu phí. |
-| 🧑‍💻 **Quản lý** | Quản lý Phòng & Giá, Xem Báo cáo Doanh thu. |
-| 🧹 **Buồng phòng** | Cập nhật Trạng thái Phòng (Dirty/Clean). |
+| **Guest** | Đặt phòng Online, Tìm phòng & Xem chi tiết, Quản lý Hồ sơ. |
+| **Lễ tân** | Check-in/Check-out, Quản lý Đặt phòng, Thu phí. |
+| **Quản lý** | Quản lý Phòng & Giá, Xem Báo cáo Doanh thu. |
+| **Buồng phòng** | Cập nhật Trạng thái Phòng (Dirty/Clean). |
 
 ### 1.2. Sequence Diagram (Luồng Trình tự)
 
@@ -64,5 +64,5 @@ Tiến độ công việc được theo dõi trực quan trên Jira Board với 
 $$\large \text{To Do} \quad \longrightarrow \quad \text{In Progress} \quad \longrightarrow \quad \text{Code Review} \quad \longrightarrow \quad \text{Testing} \quad \longrightarrow \quad \text{Done}$$
 
 ---
-> 🌟 *Tài liệu này tổng hợp kết quả của Bài Lab 02: Phân tích & Thiết kế Hệ thống Đặt phòng Khách sạn*
+
 ---
