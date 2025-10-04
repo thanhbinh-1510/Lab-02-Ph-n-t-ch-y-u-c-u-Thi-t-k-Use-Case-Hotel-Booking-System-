@@ -40,7 +40,7 @@ Thiết kế CSDL dựa trên **6 thực thể** (`Guest`, `RoomType`, `Room`, `
 
 ---
 
-## 📊 2. Quản lý Dự án (Agile Scrum/Jira)
+## 2. Quản lý Dự án (Agile Scrum/Jira)
 
 ### 2.1. Product Backlog & User Stories
 
