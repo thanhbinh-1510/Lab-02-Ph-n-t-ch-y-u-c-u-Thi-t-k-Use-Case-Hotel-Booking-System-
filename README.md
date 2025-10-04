@@ -1,51 +1,98 @@
 🏨 Hotel Booking System (HBS)
-1. Giới thiệu Dự án
-Dự án Hotel Booking System (HBS) là một hệ thống quản lý đặt phòng khách sạn toàn diện được thiết kế để số hóa các quy trình cốt lõi, từ việc đặt phòng online của khách hàng đến các nghiệp vụ quản lý nội bộ như check-in/check-out và buồng phòng.
+📌 Giới thiệu Dự án
+Dự án Hotel Booking System (HBS) là một hệ thống quản lý đặt phòng khách sạn toàn diện. Mục tiêu là số hóa các nghiệp vụ cốt lõi, từ dịch vụ khách hàng (đặt phòng online) đến vận hành nội bộ (Check-in/out, Báo cáo).
 
-Dự án này được xây dựng theo phương pháp Agile Scrum, sử dụng Jira để quản lý tiến độ và GitHub để kiểm soát phiên bản.
+Dự án được triển khai theo phương pháp Agile Scrum, sử dụng Jira để quản lý và GitHub để kiểm soát phiên bản.
 
-2. Thiết kế Hệ thống (UML & ERD)
-2.1. Biểu đồ Use Case (Mục 1.2)
-Biểu đồ Use Case mô tả các chức năng chính của hệ thống, phân chia rõ ràng theo 5 vai trò chính:
+🏗️ 1. Thiết kế Hệ thống (UML & ERD)
+Toàn bộ tài liệu thiết kế chi tiết (sơ đồ) được lưu trữ trong thư mục docs/ của repository này.
 
-Vai trò (Actor)	Chức năng cốt lõi
-Guest (Khách hàng)	Đặt phòng Online, Tìm phòng, Xem chi tiết, Thanh toán Online.
-Lễ tân	Quản lý Đặt phòng, Check-in Khách hàng, Check-out & Thu phí.
+1.1. Biểu đồ Use Case
+Vai trò (Actor)	Chức năng Chính (Core Functions)
+Guest	Đặt phòng Online, Tìm phòng & Xem chi tiết, Quản lý Hồ sơ.
+Lễ tân	Check-in/Check-out, Quản lý Đặt phòng, Thu phí.
 Quản lý	Quản lý Phòng & Giá, Xem Báo cáo Doanh thu.
-Buồng phòng	Cập nhật Trạng thái Phòng (sau khi có yêu cầu dọn phòng).
-Payment Gateway	Xử lý thanh toán.
-2.2. Sequence Diagram (Mục 1.3)
-Luồng	Mô tả
-Đặt phòng Online	Minh họa sự tương tác giữa Guest → Hệ thống Booking → Cổng Thanh toán, bao gồm các luồng rẽ nhánh (alt) cho Thanh toán thành công và Thanh toán thất bại.
-Check-in / Check-out	Mô tả luồng nghiệp vụ của Lễ tân, bao gồm: Gán phòng thực tế (Check-in) và Tổng hợp chi phí, Ghi nhận thanh toán, và gửi yêu cầu Yêu cầu dọn phòng đến Phân hệ Buồng phòng (Check-out).
-(Các sơ đồ chi tiết có thể được tìm thấy trong thư mục docs/)
+Buồng phòng	Cập nhật Trạng thái Phòng (Dirty/Clean).
+1.2. Sequence Diagram (Luồng Trình tự)
+Luồng	Mục đích
+Đặt phòng Online	Minh họa sự tương tác giữa Guest → Hệ thống Booking → Cổng Thanh toán, xử lý thành công/thất bại của giao dịch.
+Check-in / Check-out	Chi tiết quy trình nghiệp vụ của Lễ tân, bao gồm: Gán phòng (Check-in), Thu phí, và gửi yêu cầu dọn phòng (Yêu cầu dọn phòng) đến Buồng phòng.
+1.3. Sơ đồ ERD (Thiết kế CSDL)
+Thiết kế cơ sở dữ liệu dựa trên 6 thực thể chính, liên kết bằng các quan hệ 1-N:
 
-2.3. Sơ đồ Thực thể Quan hệ (ERD) (Mục 1.4)
-Thiết kế cơ sở dữ liệu được xây dựng dựa trên 6 thực thể chính, liên kết với nhau bằng các mối quan hệ 1-N:
+Entities: Guest, RoomType, Room, Staff, Reservation, Payment.
 
-Thực thể (Bảng)	Khóa chính (PK)	Mối quan hệ 1-N
-Guest, RoomType, Room, Staff	GuestID, TypeID, RoomID, StaffID	-
-Reservation	ResvID (PK)	FKs: GuestID, RoomID, StaffID
-Payment	PaymentID (PK)	FK: ResvID
-(Sơ đồ ERD chi tiết có thể được tìm thấy trong thư mục docs/)
+Mối quan hệ chính: Guest 1–N Reservation, Room 1–N Reservation, Reservation 1–N Payment.
 
-3. Quản lý Dự án (Agile Scrum/Jira)
-Dự án được quản lý theo mô hình Scrum với các công cụ và quy trình sau:
+🚀 2. Quản lý Dự án (Agile Scrum/Jira)
+2.1. Product Backlog & User Stories
+Tất cả công việc được định nghĩa dưới dạng User Stories chuẩn mực:
 
-3.1. Product Backlog (User Stories)
-Toàn bộ công việc được định nghĩa dưới dạng User Stories chuẩn: "As a [role], I want [function], so that [benefit]."
+"As a [role], I want [function], so that [benefit]."
 
-Vai trò	Ví dụ User Story
-Guest	As a Guest, I want to search for available rooms by date, so that I can choose the best room.
-Lễ tân	As a Receptionist, I want to process check-out, so that the guest can finalize payment and Buồng phòng is notified.
-Quản lý	As a Manager, I want to view revenue reports, so that I can track business performance.
-3.2. Sprint Plan (Kế hoạch 4 Sprints)
-Sprint	Mục tiêu chính	Tính năng tập trung
-Sprint 1	Nền tảng & Tìm kiếm	Authentication, Tìm phòng, Xem chi tiết.
-Sprint 2	Đặt phòng & Thanh toán	Đặt phòng, Logic giữ chỗ, Tích hợp Thanh toán.
-Sprint 3	Vận hành Khách sạn	Check-in, Check-out, Thu phí.
-Sprint 4	Báo cáo & Release	Báo cáo doanh thu, Vận hành Buồng phòng, Tối ưu & Release.
-3.3. Workflow (Jira Board)
-Tiến độ công việc được theo dõi trên Jira Board với luồng trạng thái tiêu chuẩn:
+2.2. Sprint Plan
+Sprint	Mục tiêu chính	Tính năng cốt lõi
+Sprint 1	Nền tảng & Tìm kiếm	Authentication, Tìm phòng, Setup Quản lý Phòng.
+Sprint 2	Hoàn thiện Đặt phòng	Logic giữ chỗ, Tích hợp Thanh toán Online.
+Sprint 3	Vận hành Lễ tân	Check-in, Check-out, Thu phí.
+Sprint 4	Báo cáo & Release	Báo cáo Doanh thu, Vận hành Buồng phòng, Tối ưu & Release.
+2.3. Workflow (Jira Board)
+Tiến độ công việc được theo dõi trực quan trên Jira Board với luồng trạng thái tiêu chuẩn:
 
-To Do → In Progress → Code Review → Testing → Done
+To Do⟶In Progress⟶Code Review⟶Testing⟶Done
+(Tài liệu này tổng hợp kết quả của Bài Lab 02: Phân tích & Thiết kế Hệ thống Đặt phòng Khách sạn)
+
+
+
+dr hãy trình bày md
+
+
+
+Tuyệt vời! Bạn muốn tôi trình bày lại file README.md với định dạng Markdown (MD) tối ưu, chuyên nghiệp và nổi bật nhất để bạn chỉ cần sao chép (copy) toàn bộ và dán (paste) vào Repository GitHub của mình.
+
+Đây là phiên bản cuối cùng, được tối ưu hóa về mặt trình bày:
+
+🏨 Hotel Booking System (HBS)
+📌 Giới thiệu Dự án
+Dự án Hotel Booking System (HBS) là một hệ thống quản lý đặt phòng khách sạn toàn diện. Mục tiêu là số hóa các nghiệp vụ cốt lõi, từ dịch vụ khách hàng (đặt phòng online) đến vận hành nội bộ (Lễ tân, Quản lý, Buồng phòng).
+
+Dự án này được triển khai theo phương pháp Agile Scrum, sử dụng Jira để quản lý tiến độ và GitHub để kiểm soát phiên bản và lưu trữ tài liệu.
+
+🏗️ 1. Thiết kế Hệ thống (UML & ERD)
+Toàn bộ tài liệu thiết kế chi tiết (sơ đồ) được lưu trữ trong thư mục docs/ của repository.
+
+1.1. Biểu đồ Use Case
+Vai trò (Actor)	Chức năng Chính (Core Functions)
+Guest	Đặt phòng Online, Tìm phòng & Xem chi tiết, Quản lý Hồ sơ.
+Lễ tân	Check-in/Check-out, Quản lý Đặt phòng, Thu phí.
+Quản lý	Quản lý Phòng & Giá, Xem Báo cáo Doanh thu.
+Buồng phòng	Cập nhật Trạng thái Phòng (Dirty/Clean).
+1.2. Sequence Diagram (Luồng Trình tự)
+Luồng	Mục đích
+Đặt phòng Online	Minh họa sự tương tác giữa Guest → Hệ thống Booking → Cổng Thanh toán, xử lý thành công hoặc thất bại của giao dịch.
+Check-in / Check-out	Chi tiết quy trình nghiệp vụ của Lễ tân, bao gồm: Gán phòng (Check-in), Thu phí, và gửi yêu cầu dọn phòng (Yêu cầu dọn phòng) đến Buồng phòng.
+1.3. Sơ đồ ERD (Thiết kế CSDL)
+Thiết kế cơ sở dữ liệu dựa trên 6 thực thể chính, liên kết bằng các quan hệ 1-N để đảm bảo tính toàn vẹn dữ liệu:
+
+Entities: Guest, RoomType, Room, Staff, Reservation, Payment.
+
+Mối quan hệ chính: Guest 1–N Reservation, Room 1–N Reservation, Reservation 1–N Payment.
+
+🚀 2. Quản lý Dự án (Agile Scrum/Jira)
+2.1. Product Backlog & User Stories
+Tất cả công việc được định nghĩa dưới dạng User Stories chuẩn mực: "As a [role], I want [function], so that [benefit]."
+
+Ví dụ (Guest): As a Guest, I want to search for available rooms by date, so that I can choose the best room that fits my needs.
+
+Ví dụ (Lễ tân): As a Receptionist, I want to process check-out, so that the guest can finalize payment and Buồng phòng is notified.
+
+2.2. Sprint Plan
+Sprint	Mục tiêu chính	Tính năng cốt lõi
+Sprint 1	Nền tảng & Tìm kiếm	Authentication, Tìm phòng, Setup Quản lý Phòng.
+Sprint 2	Hoàn thiện Đặt phòng	Logic giữ chỗ, Tích hợp Thanh toán Online.
+Sprint 3	Vận hành Lễ tân	Check-in, Check-out, Thu phí.
+Sprint 4	Báo cáo & Release	Báo cáo Doanh thu, Vận hành Buồng phòng, Tối ưu & Release.
+2.3. Workflow (Jira Board)
+Tiến độ công việc được theo dõi trực quan trên Jira Board với luồng trạng thái tiêu chuẩn:
+
+To Do⟶In Progress⟶Code Review⟶Testing⟶Done
